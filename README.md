@@ -268,9 +268,9 @@ INSERT INTO ausleihe VALUES (1, 1, 1, '2026-05-10', '2026-05-01');
 
 > *Describe the error or result for each test:*
 >
-> - Test A:
-> - Test B:
-> - Test C:
+> - Test A: CHECK constraint failed: tagesgebuehr > 0
+> - Test B: NOT NULL constraint failed: mitglied.email
+> - Test C: CHECK constraint failed
 
 ### Questions for Task 2
 
@@ -278,19 +278,19 @@ INSERT INTO ausleihe VALUES (1, 1, 1, '2026-05-10', '2026-05-01');
 constraint rather than a column constraint. Why is a column constraint
 insufficient here?
 
-> *Your answer:*
+> A column constraint is insufficient because it can only reference a single column, while the condition compares rueckgabe_datum and ausleihe_datum. Therefore a table-level CHECK is required.
 
 **Question 2.2:** You chose `ON DELETE RESTRICT` for all foreign keys.
 Describe a realistic alternative: for which relationship would `ON DELETE
 CASCADE` be appropriate instead, and why?
 
-> *Your answer:*
+> ON DELETE CASCADE would be appropriate between buch and exemplar, because when a book is deleted, all its copies should also be deleted to avoid orphan records.
 
 **Question 2.3:** `email` is declared `UNIQUE`. According to the SQL standard,
 how many `NULL` values may a `UNIQUE` column contain? Explain using the
 three-valued logic of SQL.
 
-> *Your answer:*
+> A UNIQUE column may contain multiple NULL values, because NULL represents an unknown value and SQL treats NULL comparisons as UNKNOWN in three-valued logic, so NULLs are not considered equal.
 
 ---
 
