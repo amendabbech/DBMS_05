@@ -570,7 +570,7 @@ SELECT rueckgabe_datum FROM ausleihe WHERE ausleihe_id = 2;
 SELECT COUNT(*) FROM ausleihe WHERE ausleihe_id = 6;
 ```
 
-> *Describe what you see and explain why `ROLLBACK` reversed both changes:*
+> What I see: ausleihe_id = 2 is back to its original rueckgabe_datum, ausleihe_id = 6 does not exist. ROLLBACK cancels everything done after BEGIN, so both the UPDATE and INSERT are undone together.
 
 ### Questions for Task 5
 
@@ -578,20 +578,20 @@ SELECT COUNT(*) FROM ausleihe WHERE ausleihe_id = 6;
 availability check and the insert happen inside the same transaction?
 What could go wrong if they ran as separate Autocommit statements?
 
-> *Your answer:*
+> Check und INSERT müssen in einer Transaktion sein, damit niemand zwischen beiden Schritten denselben Titel ausleiht. Ohne Transaktion könnte ein zweiter Prozess das Exemplar gleichzeitig ausleihen (Race Condition).
 
 **Question 5.2:** The lecture states: "Ein fehlendes `WHERE` aktualisiert
 alle Zeilen." Write the single most dangerous `UPDATE` statement possible
 on this database and explain the damage it would cause. Then explain how
 `BEGIN` / `ROLLBACK` would allow you to recover.
 
-> *Your answer:*
+> UPDATE ausleihe SET rueckgabe_datum = NULL; Das würde alle Rückgabedaten löschen und die komplette Ausleihhistorie zerstören. Mit BEGIN/ROLLBACK kann der Fehler zurückgenommen werden, solange kein COMMIT erfolgt ist.
 
 **Question 5.3:** Autocommit is convenient for read-only queries (`SELECT`).
 Is it also safe for DML in an interactive session? Give a concrete example
 from this exercise where Autocommit would have caused irreversible data loss.
 
-> *Your answer:*
+> Nein, Autocommit ist für DML nicht sicher. Jede Änderung wird sofort gespeichert. Beispiel: Ein UPDATE buch SET tagesgebuehr = 0; ohne WHERE würde alle Preise zerstören und wäre ohne ROLLBACK nicht rückgängig zu machen.
 
 Commit:
 
