@@ -110,8 +110,8 @@ for each temporal attribute.
 
 | Attribute              | Your Type         | Justification |
 |------------------------|-------------------|---------------|
-| isbn                   |                   |               |
-| titel                  |                   |               |
+| isbn                   |    VARCHAR(17)    |       ISBN values contain digits and possible hyphens, so they should be stored as text.        |
+| titel                  |    VARCHAR(255)   |    Book titles are variable-length text values.           |
 | erscheinungsjahr       |                   |               |
 | verlag                 |                   |               |
 | tagesgebuehr           |                   |               |
