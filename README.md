@@ -408,21 +408,21 @@ works because all affected rows are in the same table. Why can a standard SQL
 `UPDATE` not update rows in two different tables simultaneously, and what would
 you use instead in a production system?
 
-> *Your answer:*
+> Standard SQL UPDATE kann nur eine Tabelle ändern. Für mehrere Tabellen nutzt man mehrere UPDATEs in einer Transaktion oder Stored Procedures.
 
 **Question 3.2:** Task 3b.3 raises the fee for books published before 1960
 by 10 cents. Write the equivalent statement using `NUMERIC` arithmetic:
 `tagesgebuehr = tagesgebuehr + 0.10`. Would the same statement work correctly
 with `REAL`? Explain the risk.
 
-> *Your answer:*
+> NUMERIC ist exakt für Geldwerte. REAL kann Rundungsfehler verursachen, daher ist das Ergebnis nicht exakt.
 
 **Question 3.3:** Task 3c.1 deletes loans where the return date is more than
 30 days ago. A `DELETE` without a `WHERE` clause would delete all loans.
 Describe the operational consequence and explain how `BEGIN` / `ROLLBACK`
 protects against this mistake.
 
-> *Your answer:*
+> Ohne WHERE würde alles gelöscht werden. BEGIN/ROLLBACK verhindert Schaden, da Änderungen zurückgesetzt werden können.
 
 ---
 
