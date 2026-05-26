@@ -610,7 +610,7 @@ The lecture warns against using `TEXT` for everything. Looking at the
 it should be a more specific type, and what concrete query would break or
 produce wrong results if the wrong type were used?
 
-> *Your answer:*
+> tagesgebuehr wäre gefährlich als TEXT. Dann würden Zahlen falsch verglichen oder sortiert (z. B. "10" < "2" alphabetisch), was fehlerhafte Berechnungen und Abfragen verursacht.
 
 **Question B – DDL as documentation:**  
 A colleague reads your `schema.sql` and says: "Constraints slow down inserts
@@ -618,14 +618,14 @@ A colleague reads your `schema.sql` and says: "Constraints slow down inserts
 reasons why enforcing constraints in the database is preferable to
 enforcing them only in application code.
 
-> *Your answer:*
+> Constraints gelten immer und für alle Zugriffe, nicht nur für eine Anwendung. Sie verhindern fehlerhafte Daten auch bei direkten SQL-Statements oder Bugs im Code.
 
 **Question C – NULL semantics in lending:**  
 In `ausleihe`, `rueckgabe_datum IS NULL` means "currently on loan". Could
 this semantic be expressed without using `NULL` — e.g. by using a status
 column instead? What are the trade-offs?
 
-> *Your answer:*
+> Ja, ein Status-Feld könnte NULL ersetzen. Nachteil: zusätzliche Logik und mögliche Inkonsistenzen zwischen Status und tatsächlichem Rückgabedatum. NULL ist einfacher und klarer für „nicht gesetzt“.
 
 **Question D – `TRUNCATE` vs. `DELETE`:**  
 If you wanted to reset the entire database and reload the sample data from
@@ -633,13 +633,14 @@ scratch, you would need to empty all four tables. Can you use `TRUNCATE`
 in SQLite? What alternative would you use, and in what order must the tables
 be emptied to respect foreign key constraints?
 
-> *Your answer:*
+>  SQLite unterstützt kein TRUNCATE. Stattdessen nutzt man DELETE FROM table;. Reihenfolge wegen Foreign Keys: ausleihe → exemplar → mitglied → buch.
 
 > **Screenshot 4:** Take a screenshot showing the output of the row-count
 > verification from Task 3a after completing all DML tasks, with
 > `.headers on` and `.mode column` active.
 >
-> `[insert screenshot]`
+> ![image alt](https://github.com/amendabbech/DBMS_05/blob/8b83ffd0200f99b8a29c48ce4074e05ff585f269/4.png)
+
 
 ---
 
