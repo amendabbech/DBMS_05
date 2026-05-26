@@ -112,20 +112,20 @@ for each temporal attribute.
 |------------------------|-------------------|---------------|
 | isbn                   |    VARCHAR(17)    |       ISBN values contain digits and possible hyphens, so they should be stored as text.        |
 | titel                  |    VARCHAR(255)   |    Book titles are variable-length text values.           |
-| erscheinungsjahr       |                   |               |
-| verlag                 |                   |               |
-| tagesgebuehr           |                   |               |
-| exemplar_id            |                   |               |
-| standort               |                   |               |
-| mitglied_id            |                   |               |
-| nachname               |                   |               |
-| vorname                |                   |               |
-| geburtsdatum           |                   |               |
-| email                  |                   |               |
-| beitritt_datum         |                   |               |
-| ausleihe_id            |                   |               |
-| ausleihe_datum         |                   |               |
-| rueckgabe_datum        |                   |               |
+| erscheinungsjahr       |      INTEGER             |  The publication year is a whole number.             |
+| verlag                 |      VARCHAR(255)             |    Publisher names are text values.           |
+| tagesgebuehr           |      NUMERIC(5,2)             |      Monetary values require exact precision with two decimal places.         |
+| exemplar_id            |     INTEGER              |  The copy ID is a numeric identifier.             |
+| standort               |          VARCHAR(100)         |   Shelf locations are textual descriptions.           |
+| mitglied_id            |     INTEGER              |    The member ID is a numeric identifier.           |
+| nachname               |            VARCHAR(100)       |  Last names are variable-length text values.             |
+| vorname                |           VARCHAR(100)        |   First names are variable-length text values.            |
+| geburtsdatum           |           DATE        |  A birth date stores a calendar date.             |
+| email                  |            VARCHAR(255)       |   Email addresses are text values of variable length.            |
+| beitritt_datum         |        DATE           |   The membership start stores a calendar date.            |
+| ausleihe_id            |         INTEGER          |     The loan ID is a numeric identifier.          |
+| ausleihe_datum         |          DATE         |    The borrowing date stores a calendar date.           |
+| rueckgabe_datum        |            DATE      |  The return date stores a calendar date and may be unknown.             |
 
 ### Questions for Task 1
 
