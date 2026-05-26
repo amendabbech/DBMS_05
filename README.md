@@ -133,19 +133,40 @@ for each temporal attribute.
 example — using arithmetic — of why `REAL` would produce an incorrect result
 for a lending fee calculation. Which type must be used instead?
 
-> *Your answer:*
+>  tagesgebuehr should not be stored as REAL because floating-point values can produce rounding errors.
+Example:
+0.10 + 0.20 = 0.30000000000000004
+A lending fee calculation such as:
+0.30 × 3 = 0.899999999
+would produce an incorrect monetary result. Therefore, monetary values must be stored using:
+NUMERIC(p,s) because it stores decimal numbers exactly.
 
 **Question 1.2:** `rueckgabe_datum` must be nullable. Explain what `NULL` means
 in this specific context. Is `NULL` the same as "zero days"? Justify with
 reference to the three-valued logic of SQL.
 
-> *Your answer:*
+> NULL in rueckgabe_datum means that the return date is currently unknown because the book has not yet been returned.
+
+NULL is not the same as “zero days.”
+It represents the absence of a value.
+
+SQL uses three-valued logic:
+
+TRUE
+FALSE
+UNKNOWN
+
+If rueckgabe_datum is NULL, comparisons involving this value return UNKNOWN.
 
 **Question 1.3:** `beitritt_datum` should default to today's date when no value
 is provided. Write the `DEFAULT` expression you would use and explain why this
 is preferable to always supplying the date explicitly in the application.
 
-> *Your answer:*
+> The default expression should be:
+
+DEFAULT CURRENT_DATE
+
+This is preferable because the database automatically inserts the current date when no value is provided. It reduces application errors and ensures consistent data entry.
 
 ---
 
