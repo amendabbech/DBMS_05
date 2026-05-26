@@ -545,7 +545,7 @@ SELECT * FROM ausleihe WHERE ausleihe_id = 5;
 
 > **Screenshot 3:** Take a screenshot showing the inserted row.
 >
-> `[insert screenshot]`
+> ![image alt](https://github.com/amendabbech/DBMS_05/blob/f5a3a8b9892a83b9b6e1752e828567fac693496f/3.png)
 
 ### Task 5b – Simulate a Rollback
 
