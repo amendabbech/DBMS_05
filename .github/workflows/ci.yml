@@ -1,0 +1,27 @@
+name: SQLite CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SQLite
+        run: sudo apt-get install -y sqlite3
+
+      - name: Build database
+        run: |
+          sqlite3 test.db < schema.sql
+          sqlite3 test.db < data.sql
+
+      - name: Verify row counts
+        run: |
+          test $(sqlite3 test.db "SELECT COUNT(*) FROM buch;") -eq 5
+          test $(sqlite3 test.db "SELECT COUNT(*) FROM exemplar;") -eq 6
+          test $(sqlite3 test.db "SELECT COUNT(*) FROM mitglied;") -eq 3
+          test $(sqlite3 test.db "SELECT COUNT(*) FROM ausleihe;") -eq 4
