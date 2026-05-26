@@ -491,7 +491,7 @@ design decision. What does this tell you about the trade-off between a
 lightweight embedded database and a full-featured server database system?
 Name one scenario where SQLite is the right choice and one where it is not.
 
-SQLite trades advanced schema flexibility for simplicity and lightweight embedding. It is designed to run without a server and with minimal setup. SQLite is suitable for mobile apps or small local applications. It is not suitable for large multi-user systems with frequent schema changes, where server databases like PostgreSQL are better.
+>SQLite trades advanced schema flexibility for simplicity and lightweight embedding. It is designed to run without a server and with minimal setup. SQLite is suitable for mobile apps or small local applications. It is not suitable for large multi-user systems with frequent schema changes, where server databases like PostgreSQL are better.
 
 Commit:
 
