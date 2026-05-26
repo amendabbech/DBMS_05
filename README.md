@@ -483,14 +483,15 @@ ALTER TABLE exemplar
 nullable column. Why is this simpler than adding a `NOT NULL` column to an
 already-populated table? What steps would be needed for a `NOT NULL` column?
 
-> *Your answer:*
+> A nullable column is simpler because existing rows can automatically get NULL values without breaking existing data.
+For a NOT NULL column, you would need to either provide a default value or recreate the table and copy all data into a new structure.
 
 **Question 4.2:** SQLite's limited `ALTER TABLE` support is a deliberate
 design decision. What does this tell you about the trade-off between a
 lightweight embedded database and a full-featured server database system?
 Name one scenario where SQLite is the right choice and one where it is not.
 
-> *Your answer:*
+SQLite trades advanced schema flexibility for simplicity and lightweight embedding. It is designed to run without a server and with minimal setup. SQLite is suitable for mobile apps or small local applications. It is not suitable for large multi-user systems with frequent schema changes, where server databases like PostgreSQL are better.
 
 Commit:
 
